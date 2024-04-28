@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectFallController : MonoBehaviour
@@ -8,12 +7,19 @@ public class ObjectFallController : MonoBehaviour
     public GameObject fallingObject;
     private GameController gameController;
 
-    bool canSpawn = true; // Variable, um das Spawnen von Objekten zu steuern
+    bool canSpawn = false; // Starte das Spawnen nicht sofort
 
     void Start()
     {
         gameController = FindObjectOfType<GameController>();
-        StartCoroutine(SpawnObjects());
+        StartCoroutine(StartSpawnAfterDelay()); // Starte die Coroutine zum Warten und dann zum Spawnen
+    }
+
+    IEnumerator StartSpawnAfterDelay()
+    {
+        yield return new WaitForSeconds(0.5f); // Warte eine Sekunde
+        canSpawn = true; // Aktiviere das Spawnen
+        StartCoroutine(SpawnObjects()); // Starte das Spawnen von Objekten
     }
 
     IEnumerator SpawnObjects()
@@ -22,7 +28,7 @@ public class ObjectFallController : MonoBehaviour
         {
             if (!gameController.isGameOver) // Überprüfe, ob das Spiel endet
             {
-                Instantiate(fallingObject, new Vector3(Random.Range(-5, 5), 5, 0), Quaternion.identity);
+                Instantiate(fallingObject, new Vector3(Random.Range(-8, 8), 5, 0), Quaternion.identity);
             }
             yield return new WaitForSeconds(wait);
         }

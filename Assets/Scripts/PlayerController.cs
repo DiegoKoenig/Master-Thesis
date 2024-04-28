@@ -41,15 +41,7 @@ public class PlayerController : MonoBehaviour
         if (canMove && collision.gameObject.CompareTag("Object"))
         {
             Destroy(collision.gameObject);
-            PlayCollisionSound(); // Funktion zum Abspielen des Kollisions-Sounds aufrufen
-        }
-    }
-
-    void PlayCollisionSound()
-    {
-        if (audioSource != null)
-        {
-            audioSource.Play(); // Audiokomponente abspielen, wenn vorhanden
+            AudioManager.Instance.PlaySFX("PetNoise");
         }
     }
 }

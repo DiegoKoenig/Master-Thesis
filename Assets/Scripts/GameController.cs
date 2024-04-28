@@ -11,14 +11,15 @@ public class GameController : MonoBehaviour
     public TMP_Text ContinueTimerText;
     public GameObject objectPrefab;
     public GameObject player;
-    public AudioSource backgroundMusicSource; // Verwende eine vorhandene AudioSource-Komponente
 
     public bool isGameOver = false;
-    private float continueTime = 10f;
-    private bool continueTimerRunning = false;
+    private float continueTime = 20f;
+    private AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = AudioManager.Instance;
+
         if (GameOverCanvas != null)
         {
             GameOverCanvas.gameObject.SetActive(false);
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour
         GameOverCanvas.gameObject.SetActive(true);
         StopCountdown();
         HideContinueTimer();
+        audioManager.PauseMusic(); // Musik pausieren
 
         if (objectPrefab != null)
         {
@@ -47,11 +49,6 @@ public class GameController : MonoBehaviour
         {
             Destroy(player);
         }
-
-        if (backgroundMusicSource != null)
-        {
-            backgroundMusicSource.Stop(); // Stoppt die Hintergrundmusik
-        }
     }
 
     void WhenContinueScreenAppears()
@@ -59,6 +56,8 @@ public class GameController : MonoBehaviour
         ContinueCanvas.gameObject.SetActive(true);
         StopCountdown();
         HideContinueTimer();
+        audioManager.PauseMusic(); // Musik pausieren
+        audioManager.PlaySFX("ContinueNoise");
 
         if (objectPrefab != null)
         {
@@ -71,11 +70,6 @@ public class GameController : MonoBehaviour
         }
 
         DestroyFallenObjects(); // Zerstört gefallene Objekte, wenn der Fortsetzungsbildschirm angezeigt wird
-
-        if (backgroundMusicSource != null)
-        {
-            backgroundMusicSource.Stop(); // Stoppt die Hintergrundmusik
-        }
     }
 
     public void RetryButton()
@@ -125,7 +119,7 @@ public class GameController : MonoBehaviour
     void StopCountdown()
     {
         // Hier kann Code hinzugefügt werden, um den Countdown zu stoppen
-        continueTimerRunning = false;
+        // continueTimerRunning = false; // Entfernt, da nicht verwendet
     }
 
     void HideContinueTimer()
@@ -135,8 +129,8 @@ public class GameController : MonoBehaviour
 
     IEnumerator ContinueTimer()
     {
-        continueTimerRunning = true;
-        float initialTime = 10f;
+        // continueTimerRunning = true; // Entfernt, da nicht verwendet
+        float initialTime = 20f;
         continueTime = initialTime;
 
         while (continueTime > 0 && !isGameOver)
@@ -149,20 +143,6 @@ public class GameController : MonoBehaviour
         if (!isGameOver)
         {
             EndContinue();
-        }
-    }
-
-    void Start()
-    {
-        if (backgroundMusicSource != null)
-        {
-            backgroundMusicSource.loop = true;
-            backgroundMusicSource.volume = 0.1f; // Lautstärke der Hintergrundmusik
-            backgroundMusicSource.Play(); // Startet die Hintergrundmusik
-        }
-        else
-        {
-            Debug.LogError("Background music source is not set!");
         }
     }
 }

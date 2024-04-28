@@ -16,13 +16,34 @@ EditorBuildSettings:
     guid: 3e89a6c8d5fe649ceb4689c30c97dbbe
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
-    guid: 800a29bc111ea4bb9b863305ff6f4a86
+    guid: 0593ff42ed884414eb81295ef7e1f518
   - enabled: 1
     path: Assets/Scenes/Level 1.5.unity
-    guid: 7ebbdb13271f549558d4618da3f2c4e2
+    guid: fbf55f5eb9eb6452da2eca69e09684b7
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
-    guid: eb94e592fe5ec46a5a82d1a2bc28cdb5
+    guid: da53f1dad7df24ee6809dab6684c3d36
+  - enabled: 1
+    path: Assets/Scenes/Level 2.5.unity
+    guid: 059886356e8e446bf8b4854cacbf7792
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 81bd1ae2fbd4f4166b8871886d465672
+  - enabled: 1
+    path: Assets/Scenes/Level 3.5.unity
+    guid: 5844326e9b26244d7b31a21ee48366d0
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: a274d6f58565b424ca81b5d9dab89252
+  - enabled: 1
+    path: Assets/Scenes/Level 4.5.unity
+    guid: 976d38f947a584cd9b781387dd958955
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: 02d043c74b2524cbfad5016c1311c531
+  - enabled: 1
+    path: Assets/Scenes/Congratulation.unity
+    guid: 76224c2932beb4f3b8206fca06e1e238
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 7cfc59ffdb72e4c9d8d01e198b53d5fa, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 34b5ab4821f5c4556bc73f13c01d0402, type: 2}

@@ -1,15 +1,17 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FallingObject : MonoBehaviour
 {
     private GameController gameController;
 
-    // Die Geschwindigkeit, mit der die Flasche fällt
-    private float fallSpeed = 1f;
+    private float fallSpeed; // Die Geschwindigkeit, mit der die Flasche fällt
 
     private void Start()
     {
         gameController = FindObjectOfType<GameController>();
+        // Abrufen der aktuellen Szene und Anpassen der Fallgeschwindigkeit basierend auf der Szene
+        fallSpeed = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void Update()
