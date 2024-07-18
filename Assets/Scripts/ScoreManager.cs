@@ -16,33 +16,42 @@ public class ScoreManager : MonoBehaviour
         instance = this;
     }
 
-    public int GetScore() // Methode, um auf den Punktestand zuzugreifen
+    public int GetScore()
     {
         return score;
     }
 
-    void Start()
-    {
-        highscore = PlayerPrefs.GetInt("highscore", 0);
-        scoreText.text = score.ToString() + " PUNKTE";
-        highscoreText.text = "HIGHSCORE: " + highscore.ToString();
-    }
+void Start()
+{
+    // Lädt den gespeicherten Highscore oder setzt ihn auf 0, wenn keiner vorhanden ist
+    highscore = PlayerPrefs.GetInt("highscore", 0);
+    // Aktualisiert das Score-Textfeld mit dem aktuellen Punktestand
+    scoreText.text = score.ToString() + " PUNKTE";
+    // Aktualisiert das Highscore-Textfeld mit dem aktuellen Highscore
+    highscoreText.text = "HIGHSCORE: " + highscore.ToString();
+}
 
-    public void AddPoint()
+public void AddPoint()
+{
+    // Erhöht den Punktestand um 1
+    score += 1;
+    // Aktualisiert das Score-Textfeld mit dem neuen Punktestand
+    scoreText.text = score.ToString() + " PUNKTE";
+    // Prüft, ob der aktuelle Punktestand den Highscore übertrifft
+    if (highscore < score)
     {
-        score += 1;
-        scoreText.text = score.ToString() + " PUNKTE";
-        if (highscore < score)
-        {
-            highscore = score;
-            highscoreText.text = "HIGHSCORE: " + highscore.ToString();
-            PlayerPrefs.SetInt("highscore", highscore);
-        }
-    }
-
-    // Neue Methode zur Aktualisierung des Highscores
-    public void UpdateHighScore()
-    {
+        // Setzt den Highscore auf den aktuellen Punktestand
+        highscore = score;
+        // Aktualisiert das Highscore-Textfeld mit dem neuen Highscore
         highscoreText.text = "HIGHSCORE: " + highscore.ToString();
+        // Speichert den neuen Highscore in den PlayerPrefs
+        PlayerPrefs.SetInt("highscore", highscore);
     }
+}
+
+public void UpdateHighScore()
+{
+    // Aktualisiert das Highscore-Textfeld mit dem aktuellen Highscore
+    highscoreText.text = "HIGHSCORE: " + highscore.ToString();
+}
 }

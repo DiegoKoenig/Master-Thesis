@@ -3,31 +3,101 @@ using UnityEngine.SceneManagement;
 
 public class LevelTransition : MonoBehaviour
 {
-    private float timer = 0f;
-    public float delay = 8f; // Zeitverzögerung in Sekunden
+    private float timer;
+    private bool shouldCheckTouch;
+    private AudioSource audioSource;
+    private bool isAudioClipScene;
+    private bool isInitialScene;
+
+    void Start()
+    {
+        // Initialize the timer
+        timer = 0.0f;
+
+        // Get the current scene index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Check if it's the initial scene (scene 0)
+        isInitialScene = currentSceneIndex == 0;
+
+        // Determine if we should check for touch input or start a timer
+        if (currentSceneIndex == 2 || currentSceneIndex == 8)
+        {
+            shouldCheckTouch = true;
+            isAudioClipScene = false;
+        }
+        else if (currentSceneIndex == 4 || currentSceneIndex == 6)
+        {
+            shouldCheckTouch = true;
+            isAudioClipScene = true;
+        }
+        else
+        {
+            // For other scenes, we might want to implement other logic or simply use touch
+            shouldCheckTouch = true;
+            isAudioClipScene = false;
+        }
+
+        // Get the AudioSource component if it's an audio clip scene
+        if (isAudioClipScene)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+    }
 
     void Update()
     {
-        // Den Timer aktualisieren
-        timer += Time.deltaTime;
+        // Get the current scene index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        // Überprüfen, ob die Zeit abgelaufen ist oder der Bildschirm berührt wird
-        if (timer >= delay || Input.touchCount > 0)
+        if (isInitialScene)
         {
-            // Den Index der aktuellen Szene abrufen
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            // Update the timer
+            timer += Time.deltaTime;
 
-            // Überprüfen, ob es eine nächste Szene gibt
-            if (currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1)
+            // Check if 3 seconds have passed
+            if (timer >= 3.0f)
             {
-                // Zur nächsten Szene wechseln
-                SceneManager.LoadScene(currentSceneIndex + 1);
+                // Load the next scene
+                LoadNextScene(currentSceneIndex);
             }
-            else
+        }
+
+        if (shouldCheckTouch)
+        {
+            // Check if the screen is touched
+            if (Input.touchCount > 0)
             {
-                // Wenn keine nächste Szene vorhanden ist, zur ersten Szene zurückkehren
-                SceneManager.LoadScene(0);
+                // For scenes with audio clips, only proceed if the audio clip has finished playing
+                if (isAudioClipScene)
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        // Load the next scene
+                        LoadNextScene(currentSceneIndex);
+                    }
+                }
+                else
+                {
+                    // Load the next scene
+                    LoadNextScene(currentSceneIndex);
+                }
             }
+        }
+    }
+
+    private void LoadNextScene(int currentSceneIndex)
+    {
+        // Check if there is a next scene
+        if (currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1)
+        {
+            // Load the next scene
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+        else
+        {
+            // If no next scene, load the first scene
+            SceneManager.LoadScene(0);
         }
     }
 }

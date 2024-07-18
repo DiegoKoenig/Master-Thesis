@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 205225661}
   - component: {fileID: 205225660}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1, y: 324}
-  m_SizeDelta: {x: -1306.33, y: -960.01}
+  m_AnchoredPosition: {x: 0, y: 245}
+  m_SizeDelta: {x: -2000, y: -960.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205225660
 MonoBehaviour:
@@ -362,7 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e14e83e985d456aada3d460aeeae22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 8
 --- !u!82 &265877283
 AudioSource:
   m_ObjectHideFlags: 0
@@ -373,9 +372,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c28301a1d59c7458d95ac3428038b341, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6f308b5778ed24950aa2d52e2baf6977, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -584,10 +583,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 4 von 5
+  m_text: Finale
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e63fb4510e662470fb3a012c2210ef0f, type: 2}
+  m_sharedMaterial: {fileID: -4298622281412993905, guid: e63fb4510e662470fb3a012c2210ef0f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -611,7 +610,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 48.3
   m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -718,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e221ae5c717f44e4eb424c52fbfae5ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a29fbccff588443ca8a8fe341d1e1f22, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -906,8 +905,8 @@ Transform:
   m_GameObject: {fileID: 2041696418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.04, y: -146.88, z: -9720}
-  m_LocalScale: {x: 71.52538, y: 89.09313, z: 108}
+  m_LocalPosition: {x: 73, y: -234, z: -9720}
+  m_LocalScale: {x: 89.26811, y: 97.815544, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 265877281}

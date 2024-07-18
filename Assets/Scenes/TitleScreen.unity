@@ -240,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e14e83e985d456aada3d460aeeae22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 5
 --- !u!1 &412088549
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: 244}
+  m_AnchoredPosition: {x: -2, y: 255}
   m_SizeDelta: {x: -642.78, y: -888.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &412088551
@@ -300,8 +299,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Catch the Pet
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e63fb4510e662470fb3a012c2210ef0f, type: 2}
+  m_sharedMaterial: {fileID: -4298622281412993905, guid: e63fb4510e662470fb3a012c2210ef0f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -469,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 1140138284}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18, y: -131, z: -9720}
+  m_LocalPosition: {x: 85, y: -160, z: -9720}
   m_LocalScale: {x: 108, y: 108, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []

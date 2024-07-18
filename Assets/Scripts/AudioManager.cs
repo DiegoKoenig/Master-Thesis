@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Liste der Szenenindizes, in denen die Musik gemutet werden soll
-        List<int> muteSceneIndices = new List<int>() { 2, 4, 6, 8, 10, 12 };
+        List<int> muteSceneIndices = new List<int>() { 2, 4, 6, 8, 10 };
 
         // Überprüfe, ob der Index der geladenen Szene in der Liste der zu mutenden Szenenindizes enthalten ist
         if (muteSceneIndices.Contains(scene.buildIndex))
