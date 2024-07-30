@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class RandomAudio : MonoBehaviour
 {
+    // Ermöglicht das Hinzufügen beliebig vieler Fakten
     public List<AudioClip> audioClips;
 
     private AudioSource audioSource;
@@ -17,8 +18,10 @@ public class RandomAudio : MonoBehaviour
     {
         // Ein zufälliger Index wird generiert, um einen AudioClip aus der Liste zu wählen
         int randomIndex = Random.Range(0, audioClips.Count);
+
         // Der ausgewählte AudioClip wird dem AudioSource-Clip zugewiesen
         audioSource.clip = audioClips[randomIndex];
+        
         // Der AudioClip wird abgespielt
         audioSource.Play();
     }

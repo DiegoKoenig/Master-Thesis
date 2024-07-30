@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text highscoreText;
 
-    private int score = 0; // Punktestand privat machen
+    private int score = 0;
     private int highscore = 0;
 
     private void Awake()
@@ -25,8 +25,10 @@ void Start()
 {
     // Lädt den gespeicherten Highscore oder setzt ihn auf 0, wenn keiner vorhanden ist
     highscore = PlayerPrefs.GetInt("highscore", 0);
+
     // Aktualisiert das Score-Textfeld mit dem aktuellen Punktestand
     scoreText.text = score.ToString() + " PUNKTE";
+
     // Aktualisiert das Highscore-Textfeld mit dem aktuellen Highscore
     highscoreText.text = "HIGHSCORE: " + highscore.ToString();
 }
@@ -35,8 +37,10 @@ public void AddPoint()
 {
     // Erhöht den Punktestand um 1
     score += 1;
+
     // Aktualisiert das Score-Textfeld mit dem neuen Punktestand
     scoreText.text = score.ToString() + " PUNKTE";
+    
     // Prüft, ob der aktuelle Punktestand den Highscore übertrifft
     if (highscore < score)
     {

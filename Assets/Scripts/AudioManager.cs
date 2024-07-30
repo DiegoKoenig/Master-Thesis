@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        // Hiermit wird ermöglicht, dass die Hintergrundmusik auch nach Beenden einer Szene weitergeführt und somit auch der gewählte Lautstärkewert beigehalten wird
         if (Instance == null)
         {
             Instance = this;
@@ -26,6 +27,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        // Abspielen der Hintergrundmusik
         PlayMusic("Theme");
     }
 
@@ -44,7 +46,7 @@ public class AudioManager : MonoBehaviour
         // Liste der Szenenindizes, in denen die Musik gemutet werden soll
         List<int> muteSceneIndices = new List<int>() { 2, 4, 6, 8, 10 };
 
-        // Überprüfe, ob der Index der geladenen Szene in der Liste der zu mutenden Szenenindizes enthalten ist
+        // Überprüft, ob der Index der geladenen Szene in der Liste der zu mutenden Szenenindizes enthalten ist
         if (muteSceneIndices.Contains(scene.buildIndex))
         {
             PauseMusic();
@@ -59,30 +61,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Spielt Hintergrundmusik ab
     public void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
-        if (s == null)
-        {
-            Debug.Log("Sound Not Found");
-        }
-        else
+        if (s != null)
         {
             musicSource.clip = s.clip;
             musicSource.Play();
         }
     }
 
+    // Spielt SFX-Geräusche ab
     public void PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
 
-        if (s == null)
-        {
-            Debug.Log("Sound Not Found");
-        }
-        else
+        if (s != null)
         {
             sfxSource.PlayOneShot(s.clip);
         }

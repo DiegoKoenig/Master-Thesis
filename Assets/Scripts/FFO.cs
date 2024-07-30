@@ -1,36 +1,37 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.Collections;
 
-public class FFO : MonoBehaviour // Rename the class
+// FFO = FinalFallingObject
+public class FFO : MonoBehaviour
 {
-    private FGC gameController; // Update the reference to FGC
-
-    // The speed at which the object falls
-    private float fallSpeed = 1f;
+    private FGC gameController;
+    private FallSpeedManager fallSpeedManager;
 
     private void Start()
     {
-        gameController = FindObjectOfType<FGC>(); // Update the reference to FGC
-        // Abrufen der aktuellen Szene und Anpassen der Fallgeschwindigkeit basierend auf der Szene
-        fallSpeed = SceneManager.GetActiveScene().buildIndex;
+        gameController = FindObjectOfType<FGC>();
+
+        // Abrufen der aktuellen Szene und Anpassen der Fallgeschwindigkeit basierend auf der aktuellen Szenennummer
+        fallSpeedManager = FallSpeedManager.instance;
     }
 
     private void Update()
     {
-        // Move the object down with the set speed
-        transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
+        // Bewegt das Objekt nach unten mit der festgelegten Geschwindigkeit
+        transform.Translate(Vector3.down * fallSpeedManager.GetFallSpeed() * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Sobald eine fallende PET-Flasche den PET-Container berührt, wird der Punktestand sowie die Fallgeschwindigkeit erhöht und die kollidierende PET-Flasche zerstört
         if (collision.gameObject.CompareTag("Player"))
         {
             ScoreManager.instance.AddPoint();
+            fallSpeedManager.IncreaseFallSpeed(0.1f);
             Destroy(gameObject);
         }
+        
+        // Sobald eine fallende PET-Flasche den Boden des Levels berührt, wird das Level beendet und alle aktiven PET-Flaschen zerstört
         else if (collision.gameObject.CompareTag("Platform"))
         {
             if (gameController != null)

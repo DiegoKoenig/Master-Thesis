@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Catch the Pet
+  m_text: Catch the PET
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e63fb4510e662470fb3a012c2210ef0f, type: 2}
   m_sharedMaterial: {fileID: -4298622281412993905, guid: e63fb4510e662470fb3a012c2210ef0f, type: 2}

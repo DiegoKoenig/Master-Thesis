@@ -7,16 +7,15 @@ public class ButtonSound : MonoBehaviour
 
     private void Start()
     {
-        // Hole die Button-Komponente des UI-Buttons
         button = GetComponent<Button>();
 
-        // Füge einen Listener hinzu, der die PlaySFX-Methode aufruft, wenn der Button geklickt wird
+        // Fügt einen Listener hinzu, der die PlaySFX-Methode aufruft, wenn ein Button geklickt wird
         button.onClick.AddListener(PlayButtonSound);
     }
 
     private void PlayButtonSound()
     {
-        // Rufe die Methode PlaySFX auf dem AudioManager auf, um die Sound-Datei "TouchNoise" abzuspielen
+        // Ruft die Methode PlaySFX des AudioManagers auf, um die Sound-Datei "TouchNoise" abzuspielen
         AudioManager.Instance.PlaySFX("TouchNoise");
     }
 }

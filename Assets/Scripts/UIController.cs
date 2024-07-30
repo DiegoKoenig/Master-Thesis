@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        // Beim Start die gespeicherten Werte für die Slider laden
+        // Es werden die gespeicherten Werte für die Lautsprecher-Slider des Optionenmenüs geladen
         LoadSliderValues();
     }
 
@@ -28,23 +28,25 @@ public class UIController : MonoBehaviour
 
     public void MusicVolume()
     {
-        // Slider-Wert speichern
+        // Slider-Werte werden in PlayerPrefs gespeichert
         PlayerPrefs.SetFloat(MusicVolumeKey, _musicSlider.value);
-        // AudioManager den neuen Musik-Lautstärke-Wert übergeben
+
+        // AudioManager wird neuer Lautstärke-Wert der Hintergrundmusik übergeben
         AudioManager.Instance.MusicVolume(_musicSlider.value);
     }
 
     public void SFXVolume()
     {
-        // Slider-Wert speichern
+        // Slider-Werte werden in PlayerPrefs gespeichert
         PlayerPrefs.SetFloat(SFXVolumeKey, _sfxSlider.value);
-        // AudioManager den neuen SFX-Lautstärke-Wert übergeben
+
+        // AudioManager wird neuer Lautstärke-Wert der SFX-Geräusche übergeben
         AudioManager.Instance.SFXVolume(_sfxSlider.value);
     }
 
     private void LoadSliderValues()
     {
-        // Gespeicherte Slider-Werte laden, oder Standardwerte verwenden, falls nichts gespeichert wurde
+        // Gespeicherte Slider-Werte werden laden oder es werden die Standardwerte (Mittelwert) verwendet, falls nichts gespeichert wurde
         _musicSlider.value = PlayerPrefs.GetFloat(MusicVolumeKey, 0.5f);
         _sfxSlider.value = PlayerPrefs.GetFloat(SFXVolumeKey, 0.5f);
     }

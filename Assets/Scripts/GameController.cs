@@ -13,13 +13,16 @@ public class GameController : MonoBehaviour
     public GameObject player;
 
     public bool isGameOver = false;
+    // Level endet nach 20 Sekunden
     private float continueTime = 20f;
     private AudioManager audioManager;
 
+    // Der AudioManager wird zu Beginn eines Levels aufgerufen
     private void Awake()
     {
         audioManager = AudioManager.Instance;
 
+        // Dies ermöglicht das Aufrufen eines GameOver-Bildschirmes und eines Continue-Bildschirmes
         if (GameOverCanvas != null)
         {
             GameOverCanvas.gameObject.SetActive(false);
@@ -33,17 +36,13 @@ public class GameController : MonoBehaviour
         StartContinueCountdown();
     }
 
+    // Wenn eine PET-Flasche den Boden berührt, wird der GameOver-Bildschirm aktiviert, der Countdown gestoppt, die Musik pausiert und der PET-Container zerstört.
     void WhenPlayerDies()
     {
         GameOverCanvas.gameObject.SetActive(true);
         StopCountdown();
         HideContinueTimer();
-        audioManager.PauseMusic(); // Musik pausieren
-
-        if (objectPrefab != null)
-        {
-            Debug.Log("Prefab-Objekt gefunden!");
-        }
+        audioManager.PauseMusic();
 
         if (player != null)
         {
@@ -51,18 +50,14 @@ public class GameController : MonoBehaviour
         }
     }
 
+    // Wenn die 20 Sekunden abgelaufen sind, ohne dass eine PET-Flasche den Boden berührt hat, wird der Continue-Bildschirm aktiviert, der Countdown gestoppt, die Musik pausiert, das SFX-Geräusch "ContinueNoise" abgespielt und der PET-Container zerstört.
     void WhenContinueScreenAppears()
     {
         ContinueCanvas.gameObject.SetActive(true);
         StopCountdown();
         HideContinueTimer();
-        audioManager.PauseMusic(); // Musik pausieren
+        audioManager.PauseMusic();
         audioManager.PlaySFX("ContinueNoise");
-
-        if (objectPrefab != null)
-        {
-            Debug.Log("Prefab-Objekt gefunden!");
-        }
 
         if (player != null)
         {
@@ -116,25 +111,23 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void StopCountdown()
-    {
-        // Hier kann Code hinzugefügt werden, um den Countdown zu stoppen
-        // continueTimerRunning = false; // Entfernt, da nicht verwendet
-    }
-
     void HideContinueTimer()
     {
         ContinueTimerText.gameObject.SetActive(false);
     }
 
+    void StopCountdown()
+    {
+    }
+
+    // Konfiguriert das Levelende nach 20 Sekunden 
     IEnumerator ContinueTimer()
     {
-        // continueTimerRunning = true; // Entfernt, da nicht verwendet
         float initialTime = 20f;
         continueTime = initialTime;
-
         while (continueTime > 0 && !isGameOver)
         {
+            // Damit während den 20 Sekunden ein Timer in Ganzzahlen herunterzählt
             ContinueTimerText.text = Mathf.RoundToInt(continueTime).ToString();
             yield return new WaitForSeconds(1f);
             continueTime -= 1f;

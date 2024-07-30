@@ -160,7 +160,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 245}
-  m_SizeDelta: {x: -2000, y: -960.01}
+  m_SizeDelta: {x: -1800, y: -960.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205225660
 MonoBehaviour:
@@ -482,6 +482,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8447338c81cde4983ad62c86d6c82179, type: 3}
   - {fileID: 8300000, guid: 7461cfe9d9cac43c49968154cdea2ccd, type: 3}
   - {fileID: 8300000, guid: b14f94a5803434202ab3ee1e51c0bbd4, type: 3}
+  - {fileID: 8300000, guid: d39ee0ab74a3e42e6824ba6619da3f95, type: 3}
+  - {fileID: 8300000, guid: 0d021627b046f49598b12d443731717e, type: 3}
+  - {fileID: 8300000, guid: aee5b6c09786445108b070ab271210e2, type: 3}
+  - {fileID: 8300000, guid: f8ab252d5096a4873ab84e6fb51f931d, type: 3}
+  - {fileID: 8300000, guid: 7edb25e45c3904df0b6d1046d4c383fe, type: 3}
+  - {fileID: 8300000, guid: ee43185948d4f4361a8f97f0533cab3f, type: 3}
+  - {fileID: 8300000, guid: c79b2cd7765ad461ebbf7f0e48e4833c, type: 3}
+  - {fileID: 8300000, guid: 7bd4816e237ff4822926f168aaf0d69c, type: 3}
+  - {fileID: 8300000, guid: 8266f0b853ee445b7bc2988c6f84fbf8, type: 3}
+  - {fileID: 8300000, guid: c96c1ee594b254d2d8f32bb07234bab5, type: 3}
 --- !u!1 &508853652
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +811,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.3
+  m_fontSize: 68.85
   m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -5,41 +5,37 @@ using TMPro;
 public class FinalScore : MonoBehaviour
 {
     public TMP_Text scoreText;
-    private AudioManager audioManager; // Verweis auf den AudioManager
-    private float sceneStartTime; // Zeitpunkt, zu dem die Szene gestartet wurde
+    private AudioManager audioManager;
+    private float sceneStartTime;
 
     void Start()
     {
-        // Abrufen des gespeicherten Punktestands aus den PlayerPrefs
+        // Ruft den gespeicherten Punktestand aus den PlayerPrefs ab
         int currentScore = PlayerPrefs.GetInt("CurrentScore", 0);
 
-        // Anzeigen des Punktestands im Textfeld
+        // Zeigt den Punktestand im Textfeld an
         scoreText.text = currentScore.ToString() + " Punkte";
 
-        // Find AudioManager in der Szene
+        // Spielt die Audio-Datei "CongratulationNoise" ab
         audioManager = FindObjectOfType<AudioManager>();
         if(audioManager != null)
         {
             audioManager.PlaySFX("CongratulationNoise");
         }
-        else
-        {
-            Debug.LogWarning("AudioManager not found in the scene!");
-        }
 
-        // Speichern der Startzeit der Szene
+        // Speichert die Startzeit der Szene
         sceneStartTime = Time.time;
     }
 
     void Update()
     {
-        // Überprüfen, ob seit dem Start der Szene mehr als 5 Sekunden vergangen sind
+        // Überprüft, ob seit dem Start der Szene mehr als 5 Sekunden vergangen sind
         if (Time.time - sceneStartTime >= 5f)
         {
-            // Überprüfen, ob ein Touch registriert wurde
+            // Überprüft, ob ein Touch registriert wurde
             if (Input.touchCount > 0)
             {
-                // Szene 1 laden
+                // Falls einen der beiden Fälle eintrifft, wird Szene 1 und somit das Hauptmenü geladen
                 SceneManager.LoadScene(1);
             }
         }

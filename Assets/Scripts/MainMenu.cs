@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    // Methode zum Laden des Spiels
+    // Lädt die nächste Szene und somit Spiel
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    // Methode zum Beenden des Spiels
+    // Beendet das Spiel
     public void QuitGame()
     {
         Application.Quit();

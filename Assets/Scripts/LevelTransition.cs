@@ -11,16 +11,13 @@ public class LevelTransition : MonoBehaviour
 
     void Start()
     {
-        // Initialize the timer
         timer = 0.0f;
-
-        // Get the current scene index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        // Check if it's the initial scene (scene 0)
+        // Überprüfet, ob es sich um die Szene 0 (Titelbildschirm) handelt
         isInitialScene = currentSceneIndex == 0;
 
-        // Determine if we should check for touch input or start a timer
+        // Bestimmt, ob Touch-Eingaben überprüft werden sollen (Übergang zu Level 1 und 4) oder ein Timer gestartet wird (Übergang zu Level 2 und 3, da die Fakten nicht übersprungen werden sollen). In beiden Fällen wird die Hintergrundmusik pausiert.
         if (currentSceneIndex == 2 || currentSceneIndex == 8)
         {
             shouldCheckTouch = true;
@@ -33,12 +30,11 @@ public class LevelTransition : MonoBehaviour
         }
         else
         {
-            // For other scenes, we might want to implement other logic or simply use touch
             shouldCheckTouch = true;
             isAudioClipScene = false;
         }
 
-        // Get the AudioSource component if it's an audio clip scene
+        // Spielt Musik ab, falls es sich um eine Szene mit Audioclips handelt
         if (isAudioClipScene)
         {
             audioSource = GetComponent<AudioSource>();
@@ -47,39 +43,35 @@ public class LevelTransition : MonoBehaviour
 
     void Update()
     {
-        // Get the current scene index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+        // Die Szene 0 (Titelbildschirm) soll per Touch-Berührung oder nach 3 Sekunden automatisch verschwinden.
         if (isInitialScene)
         {
-            // Update the timer
             timer += Time.deltaTime;
 
-            // Check if 3 seconds have passed
+            // Überprüft, ob 3 Sekunden vergangen sind
             if (timer >= 3.0f)
             {
-                // Load the next scene
                 LoadNextScene(currentSceneIndex);
             }
         }
 
         if (shouldCheckTouch)
         {
-            // Check if the screen is touched
+            // Überprüfen, ob der Bildschirm berührt wird
             if (Input.touchCount > 0)
             {
-                // For scenes with audio clips, only proceed if the audio clip has finished playing
+                // Wenn PET-Fakten vor Level 2 und 3 erzählt werden, kann die neue Szene erst durch Touch-Berührung geladen werden, wenn der Audioclip zu Ende gespielt ist
                 if (isAudioClipScene)
                 {
                     if (!audioSource.isPlaying)
                     {
-                        // Load the next scene
                         LoadNextScene(currentSceneIndex);
                     }
                 }
                 else
                 {
-                    // Load the next scene
                     LoadNextScene(currentSceneIndex);
                 }
             }
@@ -88,15 +80,14 @@ public class LevelTransition : MonoBehaviour
 
     private void LoadNextScene(int currentSceneIndex)
     {
-        // Check if there is a next scene
+        // Überprüft, ob es eine nächste Szene gibt
         if (currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1)
         {
-            // Load the next scene
             SceneManager.LoadScene(currentSceneIndex + 1);
         }
         else
         {
-            // If no next scene, load the first scene
+            // Wenn es keine nächste Szene gibt, wird die erste Szene geladen
             SceneManager.LoadScene(0);
         }
     }
